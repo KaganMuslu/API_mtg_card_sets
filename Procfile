@@ -1,1 +1,1 @@
-web gunicorn -w 4 -k uvicorn.workers.UvicornWorker API_electric_car:app
+web gunicorn -w 4 -k uvicorn.workers.UvicornWorker API_mtg_card_sets:app
