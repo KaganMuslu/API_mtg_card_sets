@@ -21,7 +21,7 @@ class links(BaseModel):
 # FAST-API SECTION
 @app.get('/')
 def home():
-    return {"data":'Magic the Gathering TCG Sets-Cards App --written by Kagan Muslu'}
+    return {"data":'Magic the Gathering TCG Sets - Cards API'}
 
 
 @app.get('/about')
@@ -30,7 +30,7 @@ def home():
 
 
 
-
+# Rasgele Kart Bilgileri 
 @app.get('/random_card')
 def random_card():
     response = session.get('https://scryfall.com/random')
@@ -50,7 +50,7 @@ def random_card():
 
 
 
-
+# Son 20 Kart Seti
 @app.get('/mtgsets')
 def mtgsets():
     response = session.get('https://scryfall.com/sets')
@@ -69,7 +69,7 @@ def mtgsets():
 
 
 
-
+# Kart Arama
 @app.get('/search/{searching}')
 def search(searching: str):
 
@@ -112,9 +112,9 @@ def search(searching: str):
 
 
 
-
-#"selected_link" : "https://scryfall.com/sets/vow"
-@app.post('/selected_set')
+# Seçilmiş Kart Setinin Bilgileri
+# "selected_link" : "https://scryfall.com/sets/vow"
+@app.get('/selected_set')
 def selected_set(item: links):
     
         response = session.get(item.selected_link)
@@ -136,9 +136,9 @@ def selected_set(item: links):
 
 
 
-
-#selected_link = 'https://scryfall.com/card/tneo/16/tamiyos-notebook'
-@app.post('/selected_card')
+# Seçilmiş Kartın Bilgileri
+# "selected_link": "https://scryfall.com/card/tneo/16/tamiyos-notebook"
+@app.get('/selected_card')
 def selected_card(item: links):
 
     response = session.get(item.selected_link)
@@ -156,9 +156,11 @@ def selected_card(item: links):
 
 
 
-#HTML PAGES
-#selected_link = 'https://scryfall.com/card/tsr/76/mystical-teachings'
-@app.post('/selected_card_html')
+##HTML PAGES
+
+# Seçilmiş Kartın Bilgilerini HTML'de Gösterme
+# "selected_link": "https://scryfall.com/card/tsr/76/mystical-teachings"
+@app.get('/selected_card_html')
 def selected_card_html(request: Request, item: links):
 
     response = session.get(item.selected_link)
@@ -176,46 +178,7 @@ def selected_card_html(request: Request, item: links):
 
 
 
-
-#selected_set_link = 'https://scryfall.com/sets/mid'
-@app.get('/mtgsets_html')
-def mtgsets_html(request: Request):
-    
-    """response = session.get('https://scryfall.com/sets')
-
-
-    txt = open('templates\sets.html', 'w')
-    txt.write('<table style="border-collapse: collapse; width: 65.8407%; height: 397px; margin-left: auto; margin-right: auto;" border="1"><tbody>')
-    txt.write('<tr><th style="width: 32.3894%;">NAME</th><th class="em6" style="width: 37.6991%;">CARDS</th><th class="em9" style="width: 29.7345%;">DATE</th></tr>')
-
-
-    for x in range(9999):
-        set_name = response.html.xpath(f'//*[@id="js-checklist"]/tbody/tr[{x+1}]/td[1]/a')[0].text
-        set_card_quantity = response.html.xpath(f'//*[@id="js-checklist"]/tbody/tr[{x+1}]/td[2]/a')[0].text
-        set_date = response.html.xpath(f'//*[@id="js-checklist"]/tbody/tr[{x+1}]/td[3]/a')[0].text
-        set_link = response.html.xpath(f'//*[@id="js-checklist"]/tbody/tr[{x+1}]/td[1]/a/@href')[0]
-                
-
-        # create
-        new_link = f'<td style="width: 33.3333%; text-align: center;"><a href={set_link}>{set_name}</td>'
-        new_link2 = f'<td style="width: 33.3333%; text-align: center;">{set_card_quantity}</td>'
-        new_link3 = f'<td style="width: 33.3333%; text-align: center;">{set_date}</td>'
-        
-        # insert
-        txt.write("<tr>")
-        txt.write(new_link)
-        txt.write(new_link2)
-        txt.write(new_link3)
-        txt.write("</tr>")
-
-
-    txt.write('</tbody></table>')
-    txt.close()"""
-    return templates.TemplateResponse('sets.html', {"request": request})
-
-
-
-
+# Rastgele Seçilen Kartın Bilgilerini HTML'de Gösterme
 @app.get('/random_card_html')
 def random_card_html(request: Request):
         
@@ -237,7 +200,7 @@ def random_card_html(request: Request):
 
 
 
-
+# Aranan Kartın Bilgilerini HTML'de Gösterme
 @app.get('/search_html/{searching}')
 def search_html(request: Request, searching: str):
 
@@ -301,9 +264,9 @@ def search_html(request: Request, searching: str):
 
 
 
-
-
-@app.post('/selected_set_html')
+# Seçilmiş Setin Bilgilerini HTML'de Gösterme
+# "selected_link":"https://scryfall.com/sets/nec"
+@app.get('/selected_set_html')
 def selected_set_html(request: Request, item: links):
 
     txt = open('templates\set.html', 'w')
