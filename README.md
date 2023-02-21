@@ -3,7 +3,7 @@
 
 Bu projenin amacı, [Magic: The Gathering (MTG)](https://magic.wizards.com/en) adlı popüler bir kart oyununda kullanılan kart setlerinin ve bu setlerde yer alan kartların özelliklerinin  [FastAPI](https://fastapi.tiangolo.com) aracılığıyla erişilebilir hale getirilmesidir.
 
-Veri Kaynağı olarak hazır bir dataset kullanmayarak Python'un [requests_html](https://requests.readthedocs.io/projects/requests-html/en/latest/) modülü ile ["Scryfall.com"](https://scryfall.com/) adlı websitesinden webscraping yapmaktayım.
+Veri Kaynağı olarak hazır bir dataset kullanmayarak Python'un [requests_html](https://requests.readthedocs.io/projects/requests-html/en/latest/) modülü ile ["Scryfall.com"](https://scryfall.com/) adlı websitesinden webscraping yapılmıştır.
 
 Bu API, kullanıcılara MTG kart setlerinin isimleri, yayın tarihleri, kart sayısı gibi bilgileri ve her kartın adı, tipi, maliyeti, atak ve defans puanları gibi özelliklerini sunar. Kullanıcılar bu API'yi kullanarak, MTG kart setlerini araştırabilir, bir setin hangi kartları içerdiğini öğrenebilir veya belirli bir özellikteki kartları filtreleyebilirler.
 
