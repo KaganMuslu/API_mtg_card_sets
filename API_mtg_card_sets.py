@@ -30,6 +30,48 @@ def home():
 
 
 
+# Son 20 Kart Seti
+@app.get('/mtgsets')
+def mtgsets():
+    response = session.get('https://scryfall.com/sets')
+
+
+    database = {}
+    for x in range(20):
+        set_name = response.html.xpath(f'//*[@id="js-checklist"]/tbody/tr[{x+1}]/td[1]/a')[0].text
+        set_card_quantity = response.html.xpath(f'//*[@id="js-checklist"]/tbody/tr[{x+1}]/td[2]/a')[0].text
+        set_date = response.html.xpath(f'//*[@id="js-checklist"]/tbody/tr[{x+1}]/td[3]/a')[0].text
+        set_link = response.html.xpath(f'//*[@id="js-checklist"]/tbody/tr[{x+1}]/td[1]/a/@href')[0]
+        
+        database[x] = {'set_name':set_name, 'set_card_quantity':set_card_quantity, 'set_date':set_date, 'set_link':set_link}
+
+    return database
+
+
+# Seçilmiş Setin Bilgileri
+# "selected_link" : "https://scryfall.com/sets/vow"
+@app.get('/selected_set')
+def selected_set(item: links):
+    
+        response = session.get(item.selected_link)
+        database = {}
+
+
+        while True:
+            try:
+                for x in range(9999):
+                        
+                    card_name = response.html.xpath(f'//*[@id="main"]/div[2]/div/div[{x+1}]/a')[0].text
+                    card_link = response.html.xpath(f'//*[@id="main"]/div[2]/div/div[{x+1}]/a/@href')[0]
+                    card_image_link = response.html.xpath(f'//*[@id="main"]/div[2]/div/div[{x+1}]/a/div/div/img/@src')[0]
+
+                    database[x] = {'card_name':card_name,'card_link':card_link, 'card_image_link':card_image_link}
+            except:
+                break
+        return database
+
+
+
 # Rasgele Kart Bilgileri 
 @app.get('/random_card')
 def random_card():
@@ -50,22 +92,24 @@ def random_card():
 
 
 
-# Son 20 Kart Seti
-@app.get('/mtgsets')
-def mtgsets():
-    response = session.get('https://scryfall.com/sets')
+
+# Seçilmiş Kartın Bilgileri
+# "selected_link": "https://scryfall.com/card/tneo/16/tamiyos-notebook"
+@app.get('/selected_card')
+def selected_card(item: links):
+
+    response = session.get(item.selected_link)
 
 
-    database = {}
-    for x in range(20):
-        set_name = response.html.xpath(f'//*[@id="js-checklist"]/tbody/tr[{x+1}]/td[1]/a')[0].text
-        set_card_quantity = response.html.xpath(f'//*[@id="js-checklist"]/tbody/tr[{x+1}]/td[2]/a')[0].text
-        set_date = response.html.xpath(f'//*[@id="js-checklist"]/tbody/tr[{x+1}]/td[3]/a')[0].text
-        set_link = response.html.xpath(f'//*[@id="js-checklist"]/tbody/tr[{x+1}]/td[1]/a/@href')[0]
-        
-        database[x] = {'set_name':set_name, 'set_card_quantity':set_card_quantity, 'set_date':set_date, 'set_link':set_link}
+    card_name = response.html.xpath(f'//*[@id="main"]/div[1]/div/div[3]/h1')[0].text
+    card_type = response.html.xpath(f'//*[@id="main"]/div[1]/div/div[3]/p[1]')[0].text
+    card_text = response.html.xpath(f'//*[@id="main"]/div[1]/div/div[3]/div/div[1]')[0].text
+    card_price = response.html.xpath(f'//*[@id="stores"]/ul/li[1]/a/span')[0].text
+    card_image = response.html.xpath(f'//*[@id="main"]/div[1]/div/div[1]/div[1]/img/@src')[0]
 
-    return database
+    
+    return {'card_name':card_name,'card_type':card_type, 'card_text':card_text,'card_price':card_price, 'card_image':card_image}
+
 
 
 
@@ -75,7 +119,6 @@ def search(searching: str):
 
     response = session.get('https://scryfall.com/search?q='+searching)
     database = {}
-
 
     while True:
         try:
@@ -109,50 +152,6 @@ def search(searching: str):
                                     'card_price':card_price, 'card_image':card_image}
                 except:
                     raise HTTPException(status_code=404, detail=f"'{searching}' not found!")
-
-
-
-# Seçilmiş Kart Setinin Bilgileri
-# "selected_link" : "https://scryfall.com/sets/vow"
-@app.get('/selected_set')
-def selected_set(item: links):
-    
-        response = session.get(item.selected_link)
-        database = {}
-
-
-        while True:
-            try:
-                for x in range(9999):
-                        
-                    card_name = response.html.xpath(f'//*[@id="main"]/div[2]/div/div[{x+1}]/a')[0].text
-                    card_link = response.html.xpath(f'//*[@id="main"]/div[2]/div/div[{x+1}]/a/@href')[0]
-                    card_image_link = response.html.xpath(f'//*[@id="main"]/div[2]/div/div[{x+1}]/a/div/div/img/@src')[0]
-
-                    database[x] = {'card_name':card_name,'card_link':card_link, 'card_image_link':card_image_link}
-            except:
-                break
-        return database
-
-
-
-# Seçilmiş Kartın Bilgileri
-# "selected_link": "https://scryfall.com/card/tneo/16/tamiyos-notebook"
-@app.get('/selected_card')
-def selected_card(item: links):
-
-    response = session.get(item.selected_link)
-
-
-    card_name = response.html.xpath(f'//*[@id="main"]/div[1]/div/div[3]/h1')[0].text
-    card_type = response.html.xpath(f'//*[@id="main"]/div[1]/div/div[3]/p[1]')[0].text
-    card_text = response.html.xpath(f'//*[@id="main"]/div[1]/div/div[3]/div/div[1]')[0].text
-    card_price = response.html.xpath(f'//*[@id="stores"]/ul/li[1]/a/span')[0].text
-    card_image = response.html.xpath(f'//*[@id="main"]/div[1]/div/div[1]/div[1]/img/@src')[0]
-
-    
-    return {'card_name':card_name,'card_type':card_type, 'card_text':card_text,'card_price':card_price, 'card_image':card_image}
-
 
 
 
