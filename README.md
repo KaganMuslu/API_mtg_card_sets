@@ -15,33 +15,33 @@ Bu proje, MTG hayranları için bir veri kaynağı sağlamayı amaçlar ve bu ve
 #### Son 20 Kart Seti
 
 ```
-  GET /mtgsets
+  GET /set/all
 ```
 
 #### Seçilmiş Setin Bilgileri
 
 ```
-  GET /selected_set
+  GET /set/selected
   {"selected_link" : "https://scryfall.com/sets/vow"}
 ```
 
 #### Rasgele Kart Bilgileri 
 
 ```
-  GET /random_card
+  GET /card/random
 ```
 
 #### Seçilmiş Kartın Bilgileri
 
 ```
-  GET /selected_card
+  GET /card/selected
   {"selected_link" : "https://scryfall.com/card/tneo/16/tamiyos-notebook"}
 ```
 
 #### Kart Arama
 
 ```
-  GET /search/{searching}
+  GET /card/{searching}
 ```
 #### HTML Kısmı
 
@@ -49,26 +49,26 @@ Bu proje, MTG hayranları için bir veri kaynağı sağlamayı amaçlar ve bu ve
 #### Seçilmiş Kartın Bilgilerini HTML'de Gösterme
 
 ```
-  GET /selected_card_html
+  GET /card/selected/html
   {"selected_link": "https://scryfall.com/card/tsr/76/mystical-teachings"}
 ```
 
 #### Rastgele Seçilen Kartın Bilgilerini HTML'de Gösterme
 
 ```
-  GET /random_card_html
+  GET /card/random/html
 ```
 
 #### Aranan Kartın Bilgilerini HTML'de Gösterme
 
 ```
-  GET /search_html/{searching}
+  GET /card/{searching}/html
 ```
 
 #### Seçilmiş Setin Bilgilerini HTML'de Gösterme
 
 ```
-  GET /selected_set_html
+  GET /set/selected/html
   {"selected_link":"https://scryfall.com/sets/nec"}
 ```
 

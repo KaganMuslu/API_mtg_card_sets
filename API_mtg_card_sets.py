@@ -31,7 +31,7 @@ def home():
 
 
 # Son 20 Kart Seti
-@app.get('/mtgsets')
+@app.get('/set/all')
 def mtgsets():
     response = session.get('https://scryfall.com/sets')
 
@@ -50,7 +50,7 @@ def mtgsets():
 
 # Seçilmiş Setin Bilgileri
 # "selected_link" : "https://scryfall.com/sets/vow"
-@app.get('/selected_set')
+@app.get('/set/selected')
 def selected_set(item: links):
     
         response = session.get(item.selected_link)
@@ -73,7 +73,7 @@ def selected_set(item: links):
 
 
 # Rasgele Kart Bilgileri 
-@app.get('/random_card')
+@app.get('/card/random')
 def random_card():
     response = session.get('https://scryfall.com/random')
 
@@ -95,7 +95,7 @@ def random_card():
 
 # Seçilmiş Kartın Bilgileri
 # "selected_link": "https://scryfall.com/card/tneo/16/tamiyos-notebook"
-@app.get('/selected_card')
+@app.get('/card/selected')
 def selected_card(item: links):
 
     response = session.get(item.selected_link)
@@ -114,7 +114,7 @@ def selected_card(item: links):
 
 
 # Kart Arama
-@app.get('/search/{searching}')
+@app.get('/card/{searching}')
 def search(searching: str):
 
     response = session.get('https://scryfall.com/search?q='+searching)
@@ -159,7 +159,7 @@ def search(searching: str):
 
 # Seçilmiş Kartın Bilgilerini HTML'de Gösterme
 # "selected_link": "https://scryfall.com/card/tsr/76/mystical-teachings"
-@app.get('/selected_card_html')
+@app.get('/card/selected/html')
 def selected_card_html(request: Request, item: links):
 
     response = session.get(item.selected_link)
@@ -178,7 +178,7 @@ def selected_card_html(request: Request, item: links):
 
 
 # Rastgele Seçilen Kartın Bilgilerini HTML'de Gösterme
-@app.get('/random_card_html')
+@app.get('card/random/html')
 def random_card_html(request: Request):
         
     response = session.get('https://scryfall.com/random')
@@ -200,7 +200,7 @@ def random_card_html(request: Request):
 
 
 # Aranan Kartın Bilgilerini HTML'de Gösterme
-@app.get('/search_html/{searching}')
+@app.get('card/{searching}/html')
 def search_html(request: Request, searching: str):
 
     response = session.get('https://scryfall.com/search?q='+searching)
@@ -265,7 +265,7 @@ def search_html(request: Request, searching: str):
 
 # Seçilmiş Setin Bilgilerini HTML'de Gösterme
 # "selected_link":"https://scryfall.com/sets/nec"
-@app.get('/selected_set_html')
+@app.get('/set/selected/html')
 def selected_set_html(request: Request, item: links):
 
     txt = open('templates\set.html', 'w')
