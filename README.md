@@ -18,6 +18,8 @@ Bu proje, MTG hayranları için bir veri kaynağı sağlamayı amaçlar ve bu ve
   GET /set/all
 ```
 
+![Ekran görüntüsü 2023-10-17 152200](https://github.com/KaganMuslu/API_mtg_card_sets/assets/71410113/5ebe8351-b5ba-429f-a700-43a68adcd1b4)
+
 #### Seçilmiş Setin Bilgileri
 
 ```
@@ -30,6 +32,8 @@ Bu proje, MTG hayranları için bir veri kaynağı sağlamayı amaçlar ve bu ve
 ```
   GET /card/random
 ```
+
+![random](https://github.com/KaganMuslu/API_mtg_card_sets/assets/71410113/0ab41cc2-a14c-439f-a8ad-888787409da5)
 
 #### Seçilmiş Kartın Bilgileri
 
@@ -65,6 +69,9 @@ Bu proje, MTG hayranları için bir veri kaynağı sağlamayı amaçlar ve bu ve
   GET /card/{searching}/html
 ```
 
+![Ekran görüntüsü 2023-10-17 165750](https://github.com/KaganMuslu/API_mtg_card_sets/assets/71410113/9aadbe13-bb7c-4019-93e8-e75dcd5bcb27)
+
+
 #### Seçilmiş Setin Bilgilerini HTML'de Gösterme
 
 ```
@@ -72,10 +79,4 @@ Bu proje, MTG hayranları için bir veri kaynağı sağlamayı amaçlar ve bu ve
   {"selected_link":"https://scryfall.com/sets/nec"}
 ```
 
-![Ekran görüntüsü 2023-10-17 152200](https://github.com/KaganMuslu/API_mtg_card_sets/assets/71410113/5ebe8351-b5ba-429f-a700-43a68adcd1b4)
-
-![random](https://github.com/KaganMuslu/API_mtg_card_sets/assets/71410113/0ab41cc2-a14c-439f-a8ad-888787409da5)
-
-
-
-
+![Ekran görüntüsü 2023-10-17 170615](https://github.com/KaganMuslu/API_mtg_card_sets/assets/71410113/6425d110-b5d0-46ed-a22e-d6f92e580a33)
