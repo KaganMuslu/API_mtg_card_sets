@@ -178,7 +178,7 @@ def selected_card_html(request: Request, item: links):
 
 
 # Rastgele Seçilen Kartın Bilgilerini HTML'de Gösterme
-@app.get('card/random/html')
+@app.get('/card/random/html')
 def random_card_html(request: Request):
         
     response = session.get('https://scryfall.com/random')
@@ -200,7 +200,7 @@ def random_card_html(request: Request):
 
 
 # Aranan Kartın Bilgilerini HTML'de Gösterme
-@app.get('card/{searching}/html')
+@app.get('/card/{searching}/html')
 def search_html(request: Request, searching: str):
 
     response = session.get('https://scryfall.com/search?q='+searching)
