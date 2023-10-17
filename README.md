@@ -72,5 +72,10 @@ Bu proje, MTG hayranları için bir veri kaynağı sağlamayı amaçlar ve bu ve
   {"selected_link":"https://scryfall.com/sets/nec"}
 ```
 
+![Ekran görüntüsü 2023-10-17 152200](https://github.com/KaganMuslu/API_mtg_card_sets/assets/71410113/5ebe8351-b5ba-429f-a700-43a68adcd1b4)
+
+![random](https://github.com/KaganMuslu/API_mtg_card_sets/assets/71410113/0ab41cc2-a14c-439f-a8ad-888787409da5)
+
+
 
 
